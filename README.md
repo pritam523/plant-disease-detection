@@ -111,7 +111,7 @@ The legacy `client/`, `server/`, and `ml-service/` folders from an earlier exper
 ### Windows (PowerShell)
 
 ```powershell
-git clone https://github.com/<your-username>/plant-disease-detection.git
+git clone https://github.com/pritam523/plant-disease-detection.git
 cd plant-disease-detection
 
 py -3.12 -m venv .venv-app
@@ -126,7 +126,7 @@ Copy-Item .env.example .env
 ### macOS / Linux
 
 ```bash
-git clone https://github.com/<your-username>/plant-disease-detection.git
+git clone https://github.com/pritam523/plant-disease-detection.git
 cd plant-disease-detection
 
 python3.12 -m venv .venv-app

@@ -10,7 +10,7 @@ authors:
 version: 1.0.0
 year: 2026
 license: MIT
-repository-code: "https://github.com/<your-username>/plant-disease-detection"
+repository-code: "https://github.com/pritam523/plant-disease-detection"
 abstract: >-
   A local-first web application that identifies plant diseases from leaf
   photographs using a trained 38-class Keras model, a local reference library,
