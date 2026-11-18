@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Dedicated configuration and credential setup guide (`CONFIGURATION.md`).
+- Bundled smoke-test leaf image so CI exercises detection and fallback paths.
+
+### Fixed
+
+- CI now provides a CI-only admin hash so the admin authentication smoke test
+  passes in a clean environment.
 
 ## [1.0.0] - 2026-11-18
 

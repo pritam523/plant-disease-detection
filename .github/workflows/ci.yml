@@ -36,3 +36,6 @@ jobs:
         run: python -m unittest discover -s tests -v
         env:
           PYTHONDONTWRITEBYTECODE: '1'
+          # CI-only admin hash for the smoke-test password. Not a real credential.
+          ADMIN_PASSWORD_HASH: pbkdf2_sha256$210000$6d6b9e5937bce7d2765bc574d383731b$3190e8fdeb5b02c6aea3532924eb47ba403301e23f2572a124b7e46b9a74c2cf
+          ADMIN_SECRET_KEY: ci-only-session-secret-not-for-deployment

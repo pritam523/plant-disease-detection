@@ -16,7 +16,7 @@ from app.main import app
 SAMPLE_IMAGE = Path(
     os.getenv(
         "SAMPLE_LEAF_IMAGE",
-        r"D:\New folder (3)\Plant_Disease_Dataset\test\test\AppleScab1.JPG",
+        str(Path(__file__).resolve().parent / "assets" / "sample_leaf.jpg"),
     )
 )
 
