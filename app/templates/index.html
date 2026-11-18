@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · {{ app_name }}{% endblock %}
+{% block topbar %}Dashboard{% endblock %}
+
+{% block nav %}
+<a class="nav-item active" href="#" data-section="dashboard"><span class="nav-icon">◧</span> Overview</a>
+<a class="nav-item" href="#" data-section="detect"><span class="nav-icon">⌖</span> Detect disease</a>
+<a class="nav-item" href="#" data-section="history"><span class="nav-icon">◷</span> History</a>
+<a class="nav-item" href="#" data-section="library"><span class="nav-icon">▤</span> Disease library</a>
+<div class="nav-divider"></div>
+<a class="nav-item" href="/admin"><span class="nav-icon">⚙</span> Admin panel</a>
+{% endblock %}
+
+{% block content %}
+<section class="view active" id="view-dashboard">
+  <div class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="spark">✦</span> Plant health study</span>
+      <h1>Know your plant.<br><em>Protect your yield.</em></h1>
+      <p>Upload a clear leaf photograph to review the plant, its observed condition, and practical care information in one place.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-goto="detect">Start identification <span>→</span></button>
+        <button class="btn btn-outline" data-goto="history">View history</button>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="leaf-circle"><svg viewBox="0 0 200 200"><path d="M100 180c0-70 35-115 90-135-10 72-44 111-90 122"/><path d="M100 180c0-70-35-115-90-135 10 72 44 111 90 122"/><path d="M100 180V60"/></svg></div>
+    </div>
+  </div>
+
+  <div class="stat-grid" id="dashboard-stats">
+    <div class="stat-card"><div class="stat-label">Total identifications</div><div class="stat-value" id="stat-total">—</div><div class="stat-foot">All recorded images</div></div>
+    <div class="stat-card stat-green"><div class="stat-label">Healthy</div><div class="stat-value" id="stat-healthy">—</div><div class="stat-foot">Healthy observations</div></div>
+    <div class="stat-card stat-amber"><div class="stat-label">Conditions found</div><div class="stat-value" id="stat-diseased">—</div><div class="stat-foot">Recorded conditions</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-head"><div><h3>Commonly identified conditions</h3><p>Recorded in this study</p></div></div>
+      <div class="card-body"><div id="dash-diseases" class="bar-chart"><div class="empty-compact">No detections yet.</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><h3>Recent activity</h3><p>Latest uploads</p></div><button class="link-btn" data-goto="history">View all</button></div>
+      <div class="card-body"><div id="dash-recent" class="recent-list"><div class="empty-compact">No activity yet.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-detect">
+  <div class="section-head">
+    <div><span class="eyebrow">Step 1 of 1</span><h2>Detect a plant disease</h2><p>Use a clear, well-lit photo of a single leaf for the best result.</p></div>
+  </div>
+
+  <div class="detect-grid">
+    <div class="card upload-card">
+      <div class="card-head"><div><h3>Upload leaf image</h3><p>JPG, PNG or WEBP · up to 12 MB</p></div></div>
+      <div class="card-body">
+        <form id="detect-form">
+          <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-label="Choose or drop an image">
+            <input type="file" id="image-input" name="image" accept="image/*" hidden>
+            <div class="drop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg></div>
+            <strong>Drop your leaf photo here</strong>
+            <span>or click to browse your files</span>
+            <div class="preview-wrap" id="preview-wrap" hidden>
+              <img id="preview-img" alt="Selected leaf preview">
+              <button type="button" class="preview-clear" id="preview-clear" aria-label="Remove image">×</button>
+            </div>
+          </div>
+          <div class="file-line" id="file-line">No file selected</div>
+          <label class="check-line"><input type="checkbox" id="weather-opt"> Include local weather context (asks for your location)</label>
+          <button type="submit" class="btn btn-primary btn-block" id="analyze-btn" disabled>Identify plant <span>→</span></button>
+          <div class="progress-track" id="progress-track" hidden><div class="progress-fill"></div></div>
+          <p class="hint">Use a single, well-focused leaf for the clearest identification.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="card result-card">
+      <div class="card-head"><div><h3>Identification result</h3><p>Review the plant and its observed condition</p></div><span id="result-badge" class="badge badge-muted" hidden>Waiting</span></div>
+      <div class="card-body" id="result-body">
+        <div class="empty-state" id="result-empty">
+          <div class="empty-icon">⌖</div>
+          <h4>Your result will appear here</h4>
+          <p>Upload a leaf image to view the identification details.</p>
+        </div>
+        <div id="result-content" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-history">
+  <div class="section-head">
+    <div><span class="eyebrow">Saved records</span><h2>Identification history</h2><p>Previously reviewed images and their results.</p></div>
+    <button class="btn btn-danger-outline btn-sm" id="clear-history">Clear all history</button>
+  </div>
+  <div class="card">
+    <div class="card-head filters">
+      <div class="search-box"><input id="history-search" type="search" placeholder="Search plant, disease or filename…"></div>
+      <select id="history-status" class="select"><option value="">All results</option><option value="success">Identified</option><option value="uncertain">Needs review</option><option value="unsupported">Outside reference set</option><option value="rejected">Image unsuitable</option></select>
+      <button class="btn btn-outline btn-sm" id="history-refresh">Refresh</button>
+    </div>
+    <div class="card-body"><div id="history-list" class="history-grid"><div class="empty-compact">Loading history…</div></div></div>
+  </div>
+</section>
+
+<section class="view" id="view-library">
+  <div class="section-head">
+    <div><span class="eyebrow">38 reference conditions</span><h2>Disease library</h2><p>Study reference information.</p></div>
+  </div>
+  <div class="card">
+    <div class="card-head filters"><div class="search-box"><input id="library-search" type="search" placeholder="Search crops and diseases…"></div><span class="muted" id="library-count"></span></div>
+    <div class="card-body"><div id="library-grid" class="library-grid"><div class="empty-compact">Loading library…</div></div></div>
+  </div>
+</section>
+
+<div class="modal" id="detail-modal" hidden>
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-panel">
+    <div class="modal-head"><h3>Identification details</h3><button class="icon-btn" data-modal-close aria-label="Close">×</button></div>
+    <div class="modal-body" id="detail-modal-body"></div>
+  </div>
+</div>
+{% endblock %}

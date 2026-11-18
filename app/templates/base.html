@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Plant disease identification for an academic research study.">
+  <link rel="icon" href="/static/favicon.svg?v=2" type="image/svg+xml">
+  <title>{% block title %}{{ app_name }}{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/styles.css?v=5">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c0-6 3-10 8-12-1 6-4 9-8 10"/><path d="M12 21c0-6-3-10-8-12 1 6 4 9 8 10"/><path d="M12 21V9"/></svg>
+        </span>
+        <span class="brand-text"><strong>Verdant</strong><small>Disease Detection</small></span>
+      </a>
+
+      <nav class="nav-list" aria-label="Main navigation">
+        {% block nav %}{% endblock %}
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="credit-block">
+          <span class="credit-title">Model ready</span>
+          <span class="credit-label">Made By:</span>
+          <span>Pritam Saha</span>
+          <span>Priyota Chowdhury Mumu</span>
+        </div>
+        <small>Study project · v{{ version }}</small>
+      </div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menu-toggle" aria-label="Toggle navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div class="topbar-title">{% block topbar %}Dashboard{% endblock %}</div>
+        <div class="topbar-actions">
+          <a class="btn btn-ghost btn-sm" href="/admin">Admin</a>
+        </div>
+      </header>
+
+      <main class="content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-root" id="toast-root" aria-live="polite"></div>
+  <script src="/static/js/app.js?v=5"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

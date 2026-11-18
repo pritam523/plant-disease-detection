@@ -1,0 +1,14 @@
+# Normalize text files across platforms
+* text=auto
+
+# Binary assets
+*.keras binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.pdf binary
+
+# Notebooks are text but should not be line-ending normalized aggressively
+*.ipynb -text linguist-documentation

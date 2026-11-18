@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Admin · {{ app_name }}{% endblock %}
+{% block topbar %}Admin panel{% endblock %}
+
+{% block nav %}
+<a class="nav-item" href="/"><span class="nav-icon">◧</span> User dashboard</a>
+<div class="nav-divider"></div>
+<a class="nav-item active" href="#" data-admin-section="overview"><span class="nav-icon">◫</span> Overview</a>
+<a class="nav-item" href="#" data-admin-section="system"><span class="nav-icon">◈</span> System details</a>
+<a class="nav-item" href="#" data-admin-section="history"><span class="nav-icon">◷</span> History management</a>
+<div class="nav-divider"></div>
+<button class="nav-item nav-button" id="admin-logout"><span class="nav-icon">↩</span> Sign out</button>
+{% endblock %}
+
+{% block content %}
+<div id="admin-gate" class="gate-wrap">
+  <div class="card gate-card">
+    <div class="gate-icon">⚿</div>
+    <h2>Admin access</h2>
+    <p>This area is protected. Enter the admin password configured in <code>.env</code>.</p>
+    <form id="admin-login-form">
+      <input type="password" id="admin-password" placeholder="Admin password" autocomplete="current-password" required>
+      <button class="btn btn-primary btn-block" type="submit">Unlock dashboard</button>
+    </form>
+    <a class="link-btn" href="/">← Back to dashboard</a>
+  </div>
+</div>
+
+<div id="admin-content" hidden>
+  <section class="admin-view active" id="admin-view-overview">
+    <div class="section-head"><div><span class="eyebrow">Protected area</span><h2>Application overview</h2><p>Live statistics from your local database.</p></div></div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">Total identifications</div><div class="stat-value" id="admin-total">—</div><div class="stat-foot">All saved records</div></div>
+      <div class="stat-card stat-green"><div class="stat-label">Healthy</div><div class="stat-value" id="admin-healthy">—</div><div class="stat-foot">Healthy observations</div></div>
+      <div class="stat-card stat-amber"><div class="stat-label">Conditions found</div><div class="stat-value" id="admin-diseased">—</div><div class="stat-foot">Recorded conditions</div></div>
+      <div class="stat-card stat-blue"><div class="stat-label">Needs review</div><div class="stat-value" id="admin-review">—</div><div class="stat-foot">Images needing attention</div></div>
+      <div class="stat-card stat-green"><div class="stat-label">Extended identifications</div><div class="stat-value" id="admin-assisted">—</div><div class="stat-foot">Outside the reference set</div></div>
+    </div>
+    <div class="card"><div class="card-head"><div><h3>Identification pathways</h3><p>Reference set and extended results</p></div></div><div class="card-body"><div id="admin-source-chart" class="bar-chart"></div></div></div>
+    <div class="two-col">
+      <div class="card"><div class="card-head"><div><h3>Condition distribution</h3><p>Recorded in this study</p></div></div><div class="card-body"><div id="admin-disease-chart" class="bar-chart"></div></div></div>
+      <div class="card"><div class="card-head"><div><h3>Plant distribution</h3><p>Recorded in this study</p></div></div><div class="card-body"><div id="admin-plant-chart" class="bar-chart"></div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div><h3>Recent identifications</h3><p>Latest activity</p></div><button class="link-btn" data-admin-goto="history">Manage history</button></div>
+      <div class="card-body"><div id="admin-recent" class="table-wrap"></div></div>
+    </div>
+  </section>
+
+  <section class="admin-view" id="admin-view-system">
+    <div class="section-head"><div><span class="eyebrow">Study configuration</span><h2>System details</h2><p>Reference set, support services and local information.</p></div></div>
+    <div class="two-col">
+      <div class="card"><div class="card-head"><div><h3>Reference set</h3><p>Study conditions</p></div></div><div class="card-body" id="admin-model-info"></div></div>
+      <div class="card"><div class="card-head"><div><h3>Reference services</h3><p>Plant reference and local weather</p></div></div><div class="card-body" id="admin-services-info"></div></div>
+    </div>
+    <div class="card"><div class="card-head"><div><h3>Application information</h3><p>Runtime details</p></div></div><div class="card-body" id="admin-app-info"></div></div>
+  </section>
+
+  <section class="admin-view" id="admin-view-history">
+    <div class="section-head">
+      <div><span class="eyebrow">Saved records</span><h2>History management</h2><p>Review or remove saved identifications.</p></div>
+      <button class="btn btn-danger-outline btn-sm" id="admin-clear-history">Clear all history</button>
+    </div>
+    <div class="card"><div class="card-head filters"><div class="search-box"><input id="admin-history-search" type="search" placeholder="Search history…"></div><button class="btn btn-outline btn-sm" id="admin-history-refresh">Refresh</button></div><div class="card-body"><div id="admin-history-table" class="table-wrap"></div></div></div>
+  </section>
+</div>
+{% endblock %}
+
+{% block scripts %}<script src="/static/js/admin.js?v=5"></script>{% endblock %}

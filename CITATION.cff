@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this project in academic work, please cite it as follows."
+title: "Plant Disease Detection: A Local-First Web Application for Academic Study"
+type: software
+authors:
+  - family-names: Saha
+    given-names: Pritam
+  - family-names: Chowdhury Mumu
+    given-names: Priyota
+version: 1.0.0
+year: 2026
+license: MIT
+repository-code: "https://github.com/<your-username>/plant-disease-detection"
+abstract: >-
+  A local-first web application that identifies plant diseases from leaf
+  photographs using a trained 38-class Keras model, a local reference library,
+  and optional backend support services for plants outside the trained set.
+keywords:
+  - plant disease detection
+  - image classification
+  - academic study
+  - FastAPI
+  - Keras
