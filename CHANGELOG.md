@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dedicated configuration and credential setup guide (`CONFIGURATION.md`).
 - Bundled smoke-test leaf image so CI exercises detection and fallback paths.
 
+### Changed
+
+- CI now uses current GitHub Action majors and a pinned Ubuntu 24.04 runner.
+
 ### Fixed
 
 - CI now provides a CI-only admin hash so the admin authentication smoke test
