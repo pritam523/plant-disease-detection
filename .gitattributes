@@ -1,5 +1,5 @@
-# Normalize text files across platforms
-* text=auto
+# Normalize text files across platforms to LF
+* text=auto eol=lf
 
 # Binary assets
 *.keras binary

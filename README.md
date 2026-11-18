@@ -2,6 +2,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009485)
+![CI](https://github.com/pritam523/plant-disease-detection/actions/workflows/ci.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
 
 A local-first web application for an academic study of plant disease identification from leaf photographs. The application reuses a trained 38-class Keras image model and presents results through a clean, research-oriented dashboard with saved history and a protected admin panel.
@@ -246,7 +247,10 @@ See [SECURITY.md](SECURITY.md) for reporting and key-handling guidance.
 - [Architecture](docs/ARCHITECTURE.md)
 - [API reference](docs/API.md)
 - [Dataset and classes](docs/DATASET.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
+- [Code of conduct](CODE_OF_CONDUCT.md)
 - [Security](SECURITY.md)
 
 ---

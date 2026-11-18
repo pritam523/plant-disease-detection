@@ -20,6 +20,10 @@ from the public repository.
    python -m unittest discover -s tests -v
    ```
 
+GitHub Actions runs `python run.py check` and the same smoke suite on every
+push to `main` and on every pull request. The CI badge in `README.md` reflects
+the latest result.
+
 ## Guidelines
 
 - Keep user-facing language simple, academic, and free of product-style jargon.
@@ -30,9 +34,11 @@ from the public repository.
 
 ## Reporting issues
 
-Please open a GitHub issue with:
+Use the provided **Bug report** or **Feature request** issue template. Include:
 
 - your OS and Python version;
 - exact reproduction steps;
 - expected and observed behavior;
 - relevant logs with secrets removed.
+
+Pull requests use the repository's pull request template checklist.
