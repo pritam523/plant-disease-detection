@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Dedicated configuration and credential setup guide (`CONFIGURATION.md`).
 - Bundled smoke-test leaf image so CI exercises detection and fallback paths.
+- Added `START_APP.bat` and `START_APP.sh` launchers that handle first-time
+  environment setup and make restarts a single double-click.
 
 ### Changed
 

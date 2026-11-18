@@ -109,6 +109,18 @@ The legacy `client/`, `server/`, and `ml-service/` folders from an earlier exper
 - Git (only needed to clone the repository)
 - Approximately 2 GB of free disk space for the environment and dependencies
 
+### Easiest start: double-click launcher
+
+| Platform | File | Action |
+| --- | --- | --- |
+| Windows | `START_APP.bat` | Double-click it |
+| macOS / Linux | `START_APP.sh` | Run `bash START_APP.sh` |
+
+The launcher creates `.venv-app`, installs dependencies on first use, creates
+`.env` from `.env.example` if needed, runs the startup check, and starts the
+server. After a PC restart, simply double-click `START_APP.bat` again — nothing
+needs to be reinstalled.
+
 ### Windows (PowerShell)
 
 ```powershell

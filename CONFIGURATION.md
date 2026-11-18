@@ -6,7 +6,8 @@ runs the app with their own local configuration.
 
 ## 1. Create your local configuration file
 
-From the project root:
+If you start with `START_APP.bat` or `START_APP.sh`, this file is created
+automatically on first launch. To do it manually, run from the project root:
 
 ```powershell
 Copy-Item .env.example .env
