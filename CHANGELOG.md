@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Startup scripts now detect a broken or copied `.venv-app` and rebuild it on
+  the new machine instead of trying to use machine-specific paths.
 - CI now provides a CI-only admin hash so the admin authentication smoke test
   passes in a clean environment.
 - The AI fallback smoke test no longer depends on a configured PlantNet key;

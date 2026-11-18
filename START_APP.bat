@@ -3,11 +3,23 @@ setlocal
 cd /d "%~dp0"
 
 set "PY=%~dp0.venv-app\Scripts\python.exe"
+set "NEED_SETUP=0"
 
 if not exist "%PY%" (
-    echo Creating local Python environment. This happens only once.
+    set "NEED_SETUP=1"
+) else (
+    "%PY%" -c "import sys" >nul 2>nul
+    if errorlevel 1 set "NEED_SETUP=1"
+)
+
+if "%NEED_SETUP%"=="1" (
+    echo Creating local Python environment. This happens only once per PC.
+    if exist "%~dp0.venv-app" rmdir /S /Q "%~dp0.venv-app"
     py -3.12 -m venv .venv-app
-    if errorlevel 1 python -m venv .venv-app
+    if errorlevel 1 (
+        if exist "%~dp0.venv-app" rmdir /S /Q "%~dp0.venv-app"
+        python -m venv .venv-app
+    )
     if errorlevel 1 (
         echo.
         echo Python 3.12 is required. Install it from python.org, then run this file again.

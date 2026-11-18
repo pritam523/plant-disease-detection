@@ -69,6 +69,8 @@ Open:
 ## 5. Sharing rules
 
 - Share `.env.example`, never `.env`.
+- Do not copy `.venv-app` between PCs; `START_APP.bat` / `START_APP.sh` rebuilds
+  a fresh one automatically.
 - If a key is accidentally shared, rotate it immediately with the provider.
 - Do not put keys in screenshots, issue reports, notebooks, or source files.
 - The ZIP/package intentionally contains placeholders only.

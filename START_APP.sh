@@ -4,9 +4,11 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 PY=".venv-app/bin/python"
-if [ ! -x "$PY" ]; then
-  echo "Creating local Python environment. This happens only once."
+if [ ! -x "$PY" ] || ! "$PY" -c "import sys" >/dev/null 2>&1; then
+  echo "Creating local Python environment. This happens only once per PC."
+  rm -rf .venv-app
   if ! python3.12 -m venv .venv-app; then
+    rm -rf .venv-app
     python3 -m venv .venv-app
   fi
   PY=".venv-app/bin/python"

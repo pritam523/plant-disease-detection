@@ -119,7 +119,13 @@ The legacy `client/`, `server/`, and `ml-service/` folders from an earlier exper
 The launcher creates `.venv-app`, installs dependencies on first use, creates
 `.env` from `.env.example` if needed, runs the startup check, and starts the
 server. After a PC restart, simply double-click `START_APP.bat` again — nothing
-needs to be reinstalled.
+needs to be reinstalled. If a copied or moved `.venv-app` is broken, the
+launcher detects it and rebuilds the environment automatically.
+
+When moving the project to **another PC or a teammate**, prefer the shareable
+ZIP over copying the working folder. A virtual environment is machine-specific,
+and the working folder may contain a real `.env` with your keys. The ZIP
+contains no keys and the launcher builds a fresh environment there.
 
 ### Windows (PowerShell)
 
