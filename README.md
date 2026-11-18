@@ -247,6 +247,7 @@ See [SECURITY.md](SECURITY.md) for reporting and key-handling guidance.
 - [Architecture](docs/ARCHITECTURE.md)
 - [API reference](docs/API.md)
 - [Dataset and classes](docs/DATASET.md)
+- [Configuration and credentials](CONFIGURATION.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
