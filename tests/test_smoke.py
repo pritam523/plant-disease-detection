@@ -11,6 +11,7 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
+from app.config import settings
 from app.main import app
 
 SAMPLE_IMAGE = Path(
@@ -134,7 +135,12 @@ class SmokeTests(unittest.TestCase):
             },
             "sources": ["https://extension.umn.edu/"],
         }
+        # Keep the fallback path deterministic in clean CI environments where
+        # no PlantNet key is configured. The service call itself is mocked, so
+        # no external API request is made.
         with (
+            patch.object(settings, "AI_FALLBACK_ENABLED", True),
+            patch.object(settings, "PLANTNET_ENABLED", True),
             patch("app.services.detection_service.model_service.predict", return_value=uncertain),
             patch("app.services.detection_service.plantnet_service.identify", return_value=plantnet),
             patch("app.services.detection_service.gemini_service.analyze", return_value=gemini),
